@@ -1,0 +1,42 @@
+CMake Error at C:/Users/vovik/.espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake:73 (message):
+  The C++ compiler
+
+    "C:/Users/vovik/.espressif/tools/esp-clang/esp-18.1.2_20240912/esp-clang/bin/clang++.exe"
+
+  is not able to compile a simple test program.
+
+  It fails with the following output:
+
+    Change Dir: 'C:/Users/vovik/Projects/qt_two_buttons_app/build/CMakeFiles/CMakeScratch/TryCompile-ic0o3k'
+    
+    Run Build Command(s): C:/Users/vovik/.espressif/tools/ninja/1.12.1/ninja.exe -v cmTC_5f4fd
+    [1/2] C:\Users\vovik\.espressif\tools\esp-clang\esp-18.1.2_20240912\esp-clang\bin\clang++.exe    -MD -MT CMakeFiles/cmTC_5f4fd.dir/testCXXCompiler.cxx.obj -MF CMakeFiles\cmTC_5f4fd.dir\testCXXCompiler.cxx.obj.d -o CMakeFiles/cmTC_5f4fd.dir/testCXXCompiler.cxx.obj -c C:/Users/vovik/Projects/qt_two_buttons_app/build/CMakeFiles/CMakeScratch/TryCompile-ic0o3k/testCXXCompiler.cxx
+    [2/2] C:\WINDOWS\system32\cmd.exe /C "cd . && C:\Users\vovik\.espressif\tools\esp-clang\esp-18.1.2_20240912\esp-clang\bin\clang++.exe   CMakeFiles/cmTC_5f4fd.dir/testCXXCompiler.cxx.obj -o cmTC_5f4fd.exe -Wl,--out-implib,libcmTC_5f4fd.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+    FAILED: cmTC_5f4fd.exe 
+    C:\WINDOWS\system32\cmd.exe /C "cd . && C:\Users\vovik\.espressif\tools\esp-clang\esp-18.1.2_20240912\esp-clang\bin\clang++.exe   CMakeFiles/cmTC_5f4fd.dir/testCXXCompiler.cxx.obj -o cmTC_5f4fd.exe -Wl,--out-implib,libcmTC_5f4fd.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+    ld.lld: error: unknown argument '--major-image-version'
+    ld.lld: error: unknown argument '--minor-image-version'
+    ld.lld: error: cannot open 0: No such file or directory
+    ld.lld: error: cannot open 0: No such file or directory
+    ld.lld: error: unable to find library -lkernel32
+    ld.lld: error: unable to find library -luser32
+    ld.lld: error: unable to find library -lgdi32
+    ld.lld: error: unable to find library -lwinspool
+    ld.lld: error: unable to find library -lshell32
+    ld.lld: error: unable to find library -lole32
+    ld.lld: error: unable to find library -loleaut32
+    ld.lld: error: unable to find library -luuid
+    ld.lld: error: unable to find library -lcomdlg32
+    ld.lld: error: unable to find library -ladvapi32
+    clang++: error: ld command failed with exit code 1 (use -v to see invocation)
+    ninja: build stopped: subcommand failed.
+    
+    
+
+  
+
+  CMake will not be able to correctly generate this project.
+Call Stack (most recent call first):
+  CMakeLists.txt:3 (project)
+
+

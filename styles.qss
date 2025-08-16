@@ -1,0 +1,202 @@
+/* iOS Style Qt Application Stylesheet */
+
+QWidget {
+    background-color: #f2f2f7;
+    color: #1d1d1f;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+}
+
+QLabel {
+    background-color: transparent;
+    border: none;
+    color: #1d1d1f;
+    font-weight: 400;
+}
+
+QLabel#titleLabel {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 20px 0px;
+}
+
+QLabel#subtitleLabel {
+    font-size: 17px;
+    font-weight: 400;
+    color: #86868b;
+    margin: 10px 0px;
+}
+
+QPushButton {
+    background-color: #007aff;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 16px 24px;
+    margin: 8px;
+    min-width: 140px;
+    min-height: 50px;
+}
+
+QPushButton:hover {
+    background-color: #0056cc;
+}
+
+QPushButton:pressed {
+    background-color: #004499;
+    transform: scale(0.98);
+}
+
+QPushButton#secondaryButton {
+    background-color: #f2f2f7;
+    color: #007aff;
+    border: 1px solid #d1d1d6;
+}
+
+QPushButton#secondaryButton:hover {
+    background-color: #e5e5ea;
+}
+
+QPushButton#secondaryButton:pressed {
+    background-color: #d1d1d6;
+}
+
+QPushButton#destructiveButton {
+    background-color: #ff3b30;
+    color: white;
+}
+
+QPushButton#destructiveButton:hover {
+    background-color: #d70015;
+}
+
+QPushButton#destructiveButton:pressed {
+    background-color: #b30000;
+}
+
+QFrame#card {
+    background-color: white;
+    border-radius: 16px;
+    border: 1px solid #e5e5ea;
+    margin: 16px;
+    padding: 20px;
+}
+
+QFrame#headerCard {
+    background-color: white;
+    border-radius: 16px;
+    border: 1px solid #e5e5ea;
+    margin: 16px;
+    padding: 24px;
+}
+
+QTabWidget::pane {
+    border: none;
+    background-color: #f2f2f7;
+}
+
+QTabWidget::tab-bar {
+    alignment: center;
+}
+
+QTabBar::tab {
+    background-color: white;
+    color: #86868b;
+    border: none;
+    border-radius: 8px 8px 0px 0px;
+    padding: 12px 20px;
+    margin: 0px 2px;
+    font-size: 15px;
+    font-weight: 500;
+    min-width: 80px;
+}
+
+QTabBar::tab:selected {
+    background-color: #f2f2f7;
+    color: #007aff;
+    font-weight: 600;
+}
+
+QTabBar::tab:hover:!selected {
+    background-color: #e5e5ea;
+    color: #1d1d1f;
+}
+
+QTabWidget::tab-content {
+    background-color: #f2f2f7;
+    border: none;
+}
+
+/* Message Box Styles */
+QMessageBox {
+    background-color: #f2f2f7;
+    color: #1d1d1f;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+QMessageBox QPushButton {
+    background-color: #007aff;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    padding: 12px 20px;
+    min-width: 80px;
+}
+
+QMessageBox QPushButton:hover {
+    background-color: #0056cc;
+}
+
+QMessageBox QPushButton[text="No"] {
+    background-color: #f2f2f7;
+    border: 1px solid #d1d1d6;
+    color: #007aff;
+}
+
+QMessageBox QPushButton[text="No"]:hover {
+    background-color: #e5e5ea;
+}
+
+/* Destructive Message Box Styles */
+QMessageBox[objectName="destructiveDialog"] QPushButton {
+    background-color: #ff3b30;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    padding: 12px 20px;
+    min-width: 80px;
+}
+
+QMessageBox[objectName="destructiveDialog"] QPushButton:hover {
+    background-color: #d70015;
+}
+
+QMessageBox[objectName="destructiveDialog"] QPushButton[text="No"] {
+    background-color: #f2f2f7;
+    border: 1px solid #d1d1d6;
+    color: #007aff;
+}
+
+QMessageBox[objectName="destructiveDialog"] QPushButton[text="No"]:hover {
+    background-color: #e5e5ea;
+}
+
+/* Secondary Message Box Styles */
+QMessageBox[objectName="secondaryDialog"] QPushButton {
+    background-color: #f2f2f7;
+    border: 1px solid #d1d1d6;
+    border-radius: 8px;
+    color: #007aff;
+    font-weight: 600;
+    padding: 12px 20px;
+    min-width: 80px;
+}
+
+QMessageBox[objectName="secondaryDialog"] QPushButton:hover {
+    background-color: #e5e5ea;
+}

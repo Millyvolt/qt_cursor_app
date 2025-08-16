@@ -1,0 +1,6 @@
+-- The CXX compiler identification is Clang 18.1.2
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - failed
+-- Check for working CXX compiler: C:/Users/vovik/.espressif/tools/esp-clang/esp-18.1.2_20240912/esp-clang/bin/clang++.exe
+-- Check for working CXX compiler: C:/Users/vovik/.espressif/tools/esp-clang/esp-18.1.2_20240912/esp-clang/bin/clang++.exe - broken
+-- Configuring incomplete, errors occurred!
