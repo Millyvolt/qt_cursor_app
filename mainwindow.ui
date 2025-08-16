@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QWidget" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>iOS Style Qt Application</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+    background-color: #f2f2f7;
+    color: #1d1d1f;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>16</number>
+   </property>
+   <property name="leftMargin">
+    <number>20</number>
+   </property>
+   <property name="topMargin">
+    <number>20</number>
+   </property>
+   <property name="rightMargin">
+    <number>20</number>
+   </property>
+   <property name="bottomMargin">
+    <number>20</number>
+   </property>
+   <item>
+    <widget class="QFrame" name="headerCard">
+     <property name="styleSheet">
+      <string notr="true">QFrame#headerCard {
+    background-color: white;
+    border-radius: 16px;
+    border: 1px solid #e5e5ea;
+    margin: 16px;
+    padding: 24px;
+}</string>
+     </property>
+     <layout class="QVBoxLayout" name="headerLayout">
+      <item>
+       <widget class="QLabel" name="titleLabel">
+        <property name="styleSheet">
+         <string notr="true">QLabel#titleLabel {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 20px 0px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Settings</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="subtitleLabel">
+        <property name="styleSheet">
+         <string notr="true">QLabel#subtitleLabel {
+    font-size: 17px;
+    font-weight: 400;
+    color: #86868b;
+    margin: 10px 0px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Navigate through different sections</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="styleSheet">
+      <string notr="true">QTabWidget::pane {
+    border: none;
+    background-color: #f2f2f7;
+}
+
+QTabWidget::tab-bar {
+    alignment: center;
+}
+
+QTabBar::tab {
+    background-color: white;
+    color: #86868b;
+    border: none;
+    border-radius: 8px 8px 0px 0px;
+    padding: 12px 20px;
+    margin: 0px 2px;
+    font-size: 15px;
+    font-weight: 500;
+    min-width: 80px;
+}
+
+QTabBar::tab:selected {
+    background-color: #f2f2f7;
+    color: #007aff;
+    font-weight: 600;
+}
+
+QTabBar::tab:hover:!selected {
+    background-color: #e5e5ea;
+    color: #1d1d1f;
+}
+
+QTabWidget::tab-content {
+    background-color: #f2f2f7;
+    border: none;
+}</string>
+     </property>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="primaryTab">
+      <attribute name="title">
+       <string>Primary</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="primaryLayout">
+       <property name="spacing">
+        <number>16</number>
+       </property>
+       <property name="leftMargin">
+        <number>20</number>
+       </property>
+       <property name="topMargin">
+        <number>20</number>
+       </property>
+       <property name="rightMargin">
+        <number>20</number>
+       </property>
+       <property name="bottomMargin">
+        <number>20</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="primaryCard">
+         <property name="styleSheet">
+          <string notr="true">QFrame#card {
+    background-color: white;
+    border-radius: 16px;
+    border: 1px solid #e5e5ea;
+    margin: 16px;
+    padding: 20px;
+}</string>
+         </property>
+         <layout class="QVBoxLayout" name="primaryCardLayout">
+          <item>
+           <widget class="QLabel" name="primaryDescription">
+            <property name="styleSheet">
+             <string notr="true">QLabel { color: #86868b; font-size: 15px; margin: 10px; }</string>
+            </property>
+            <property name="text">
+             <string>This is the primary action tab. Click the button below to perform the main action of your application.</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="primaryButton">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #007aff;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 16px 24px;
+    margin: 8px;
+    min-width: 140px;
+    min-height: 50px;
+}
+
+QPushButton:hover {
+    background-color: #0056cc;
+}
+
+QPushButton:pressed {
+    background-color: #004499;
+    transform: scale(0.98);
+}</string>
+            </property>
+            <property name="text">
+             <string>Primary Action</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="secondaryTab">
+      <attribute name="title">
+       <string>Secondary</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="secondaryLayout">
+       <property name="spacing">
+        <number>16</number>
+       </property>
+       <property name="leftMargin">
+        <number>20</number>
+       </property>
+       <property name="topMargin">
+        <number>20</number>
+       </property>
+       <property name="rightMargin">
+        <number>20</number>
+       </property>
+       <property name="bottomMargin">
+        <number>20</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="secondaryCard">
+         <property name="styleSheet">
+          <string notr="true">QFrame#card {
+    background-color: white;
+    border-radius: 16px;
+    border: 1px solid #e5e5ea;
+    margin: 16px;
+    padding: 20px;
+}</string>
+         </property>
+         <layout class="QVBoxLayout" name="secondaryCardLayout">
+          <item>
+           <widget class="QLabel" name="secondaryDescription">
+            <property name="styleSheet">
+             <string notr="true">QLabel { color: #86868b; font-size: 15px; margin: 10px; }</string>
+            </property>
+            <property name="text">
+             <string>This is the secondary action tab. This button has a different styling with a light background.</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="secondaryButton">
+            <property name="styleSheet">
+             <string notr="true">QPushButton#secondaryButton {
+    background-color: #f2f2f7;
+    color: #007aff;
+    border: 1px solid #d1d1d6;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 16px 24px;
+    margin: 8px;
+    min-width: 140px;
+    min-height: 50px;
+}
+
+QPushButton#secondaryButton:hover {
+    background-color: #e5e5ea;
+}
+
+QPushButton#secondaryButton:pressed {
+    background-color: #d1d1d6;
+}</string>
+            </property>
+            <property name="text">
+             <string>Secondary Action</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="destructiveTab">
+      <attribute name="title">
+       <string>Destructive</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="destructiveLayout">
+       <property name="spacing">
+        <number>16</number>
+       </property>
+       <property name="leftMargin">
+        <number>20</number>
+       </property>
+       <property name="topMargin">
+        <number>20</number>
+       </property>
+       <property name="rightMargin">
+        <number>20</number>
+       </property>
+       <property name="bottomMargin">
+        <number>20</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="destructiveCard">
+         <property name="styleSheet">
+          <string notr="true">QFrame#card {
+    background-color: white;
+    border-radius: 16px;
+    border: 1px solid #e5e5ea;
+    margin: 16px;
+    padding: 20px;
+}</string>
+         </property>
+         <layout class="QVBoxLayout" name="destructiveCardLayout">
+          <item>
+           <widget class="QLabel" name="destructiveDescription">
+            <property name="styleSheet">
+             <string notr="true">QLabel { color: #86868b; font-size: 15px; margin: 10px; }</string>
+            </property>
+            <property name="text">
+             <string>This is the destructive action tab. Be careful with this button as it will ask for confirmation before proceeding.</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="destructiveButton">
+            <property name="styleSheet">
+             <string notr="true">QPushButton#destructiveButton {
+    background-color: #ff3b30;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 16px 24px;
+    margin: 8px;
+    min-width: 140px;
+    min-height: 50px;
+}
+
+QPushButton#destructiveButton:hover {
+    background-color: #d70015;
+}
+
+QPushButton#destructiveButton:pressed {
+    background-color: #b30000;
+}</string>
+            </property>
+            <property name="text">
+             <string>Destructive Action</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

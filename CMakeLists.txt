@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find Qt6
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets UiTools)
 
 # Enable automoc for Qt
 set(CMAKE_AUTOMOC ON)
@@ -15,7 +15,7 @@ set(CMAKE_AUTOMOC ON)
 add_executable(QtTwoButtonsApp main.cpp)
 
 # Link Qt libraries
-target_link_libraries(QtTwoButtonsApp Qt6::Core Qt6::Widgets)
+target_link_libraries(QtTwoButtonsApp Qt6::Core Qt6::Widgets Qt6::UiTools)
 
 # Set output directory
 set_target_properties(QtTwoButtonsApp PROPERTIES
@@ -24,3 +24,6 @@ set_target_properties(QtTwoButtonsApp PROPERTIES
 
 # Copy styles.qss to build directory
 configure_file(${CMAKE_SOURCE_DIR}/styles.qss ${CMAKE_BINARY_DIR}/bin/styles.qss COPYONLY)
+
+# Copy UI file to build directory
+configure_file(${CMAKE_SOURCE_DIR}/mainwindow.ui ${CMAKE_BINARY_DIR}/bin/mainwindow.ui COPYONLY)

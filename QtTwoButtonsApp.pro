@@ -1,4 +1,4 @@
-QT += core widgets
+QT += core widgets uitools
 
 CONFIG += c++17
 
@@ -11,6 +11,11 @@ SOURCES += main.cpp
 styles.files = styles.qss
 styles.path = $$OUT_PWD
 INSTALLS += styles
+
+# Copy UI file to output directory
+ui.files = mainwindow.ui
+ui.path = $$OUT_PWD
+INSTALLS += ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

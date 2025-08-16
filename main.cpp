@@ -1,19 +1,20 @@
 #include <QApplication>
 #include <QWidget>
 #include <QPushButton>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QLabel>
 #include <QMessageBox>
 #include <QFont>
 #include <QFontDatabase>
 #include <QStyleFactory>
-#include <QTabWidget>
 #include <QFile>
 #include <QTextStream>
 #include <QDir>
 #include <QDebug>
 #include <QCoreApplication>
+#include <QUiLoader>
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QTabWidget>
+#include <QFrame>
 
 class MainWindow : public QWidget
 {
@@ -22,11 +23,82 @@ class MainWindow : public QWidget
 public:
     MainWindow(QWidget *parent = nullptr) : QWidget(parent)
     {
+        // Load UI from designer file
+        if (!loadUI()) {
+            qWarning() << "Failed to load UI file, creating fallback UI";
+            createFallbackUI();
+        }
+        
+        // Load additional stylesheet
+        loadStylesheet();
+        
+        // Connect button signals
+        connectSignals();
+        
+        // Set window properties
         setWindowTitle("iOS Style Qt Application");
         setFixedSize(500, 700);
+    }
+
+private:
+    bool loadUI()
+    {
+        QStringList searchPaths = {
+            "mainwindow.ui",                                    // Current directory
+            QDir::currentPath() + "/mainwindow.ui",            // Current working directory
+            QCoreApplication::applicationDirPath() + "/mainwindow.ui",  // Executable directory
+            QCoreApplication::applicationDirPath() + "/bin/mainwindow.ui", // Build output directory
+            "../mainwindow.ui",                                // Parent directory
+            "../../mainwindow.ui"                              // Grandparent directory
+        };
         
-        // Load stylesheet from external file
-        loadStylesheet();
+        for (const QString &path : searchPaths) {
+            qDebug() << "Trying to load UI from:" << path;
+            QFile uiFile(path);
+            
+            if (uiFile.exists()) {
+                qDebug() << "UI file found at:" << path;
+                if (uiFile.open(QFile::ReadOnly)) {
+                    QUiLoader loader;
+                    QWidget *uiWidget = loader.load(&uiFile, this);
+                    uiFile.close();
+                    
+                    if (uiWidget) {
+                        // Set the loaded UI as the main widget
+                        QVBoxLayout *layout = new QVBoxLayout(this);
+                        layout->addWidget(uiWidget);
+                        layout->setContentsMargins(0, 0, 0, 0);
+                        setLayout(layout);
+                        
+                        // Store references to UI elements
+                        m_primaryButton = uiWidget->findChild<QPushButton*>("primaryButton");
+                        m_secondaryButton = uiWidget->findChild<QPushButton*>("secondaryButton");
+                        m_destructiveButton = uiWidget->findChild<QPushButton*>("destructiveButton");
+                        
+                        qDebug() << "UI loaded successfully from:" << path;
+                        qDebug() << "Primary button found:" << (m_primaryButton != nullptr);
+                        qDebug() << "Secondary button found:" << (m_secondaryButton != nullptr);
+                        qDebug() << "Destructive button found:" << (m_destructiveButton != nullptr);
+                        
+                        return true;
+                    } else {
+                        qWarning() << "Failed to load UI from:" << path << "- loader failed";
+                    }
+                } else {
+                    qWarning() << "Could not open UI file:" << path << "-" << uiFile.errorString();
+                }
+            } else {
+                qDebug() << "UI file not found at:" << path;
+            }
+        }
+        
+        qWarning() << "Could not load mainwindow.ui from any location";
+        return false;
+    }
+    
+    void createFallbackUI()
+    {
+        qDebug() << "Creating fallback UI programmatically";
         
         // Create main layout
         QVBoxLayout *mainLayout = new QVBoxLayout(this);
@@ -64,8 +136,96 @@ public:
         
         setLayout(mainLayout);
     }
-
-private:
+    
+    void createPrimaryTab(QTabWidget *tabWidget)
+    {
+        QWidget *tab = new QWidget();
+        QVBoxLayout *layout = new QVBoxLayout(tab);
+        layout->setContentsMargins(20, 20, 20, 20);
+        layout->setSpacing(16);
+        
+        // Create content card
+        QFrame *contentCard = new QFrame(tab);
+        contentCard->setObjectName("card");
+        QVBoxLayout *contentLayout = new QVBoxLayout(contentCard);
+        
+        QLabel *descriptionLabel = new QLabel("This is the primary action tab. Click the button below to perform the main action of your application.", tab);
+        descriptionLabel->setAlignment(Qt::AlignCenter);
+        descriptionLabel->setWordWrap(true);
+        descriptionLabel->setStyleSheet("QLabel { color: #86868b; font-size: 15px; margin: 10px; }");
+        
+        m_primaryButton = new QPushButton("Primary Action", tab);
+        
+        contentLayout->addWidget(descriptionLabel);
+        contentLayout->addWidget(m_primaryButton);
+        contentLayout->addStretch();
+        
+        layout->addWidget(contentCard);
+        layout->addStretch();
+        
+        tabWidget->addTab(tab, "Primary");
+    }
+    
+    void createSecondaryTab(QTabWidget *tabWidget)
+    {
+        QWidget *tab = new QWidget();
+        QVBoxLayout *layout = new QVBoxLayout(tab);
+        layout->setContentsMargins(20, 20, 20, 20);
+        layout->setSpacing(16);
+        
+        // Create content card
+        QFrame *contentCard = new QFrame(tab);
+        contentCard->setObjectName("card");
+        QVBoxLayout *contentLayout = new QVBoxLayout(contentCard);
+        
+        QLabel *descriptionLabel = new QLabel("This is the secondary action tab. This button has a different styling with a light background.", tab);
+        descriptionLabel->setAlignment(Qt::AlignCenter);
+        descriptionLabel->setWordWrap(true);
+        descriptionLabel->setStyleSheet("QLabel { color: #86868b; font-size: 15px; margin: 10px; }");
+        
+        m_secondaryButton = new QPushButton("Secondary Action", tab);
+        m_secondaryButton->setObjectName("secondaryButton");
+        
+        contentLayout->addWidget(descriptionLabel);
+        contentLayout->addWidget(m_secondaryButton);
+        contentLayout->addStretch();
+        
+        layout->addWidget(contentCard);
+        layout->addStretch();
+        
+        tabWidget->addTab(tab, "Secondary");
+    }
+    
+    void createDestructiveTab(QTabWidget *tabWidget)
+    {
+        QWidget *tab = new QWidget();
+        QVBoxLayout *layout = new QVBoxLayout(tab);
+        layout->setContentsMargins(20, 20, 20, 20);
+        layout->setSpacing(16);
+        
+        // Create content card
+        QFrame *contentCard = new QFrame(tab);
+        contentCard->setObjectName("card");
+        QVBoxLayout *contentLayout = new QVBoxLayout(contentCard);
+        
+        QLabel *descriptionLabel = new QLabel("This is the destructive action tab. Be careful with this button as it will ask for confirmation before proceeding.", tab);
+        descriptionLabel->setAlignment(Qt::AlignCenter);
+        descriptionLabel->setWordWrap(true);
+        descriptionLabel->setStyleSheet("QLabel { color: #86868b; font-size: 15px; margin: 10px; }");
+        
+        m_destructiveButton = new QPushButton("Destructive Action", tab);
+        m_destructiveButton->setObjectName("destructiveButton");
+        
+        contentLayout->addWidget(descriptionLabel);
+        contentLayout->addWidget(m_destructiveButton);
+        contentLayout->addStretch();
+        
+        layout->addWidget(contentCard);
+        layout->addStretch();
+        
+        tabWidget->addTab(tab, "Destructive");
+    }
+    
     void loadStylesheet()
     {
         QStringList searchPaths = {
@@ -118,99 +278,26 @@ private:
         }
     }
     
-    void createPrimaryTab(QTabWidget *tabWidget)
+    void connectSignals()
     {
-        QWidget *tab = new QWidget();
-        QVBoxLayout *layout = new QVBoxLayout(tab);
-        layout->setContentsMargins(20, 20, 20, 20);
-        layout->setSpacing(16);
-        
-        // Create content card
-        QFrame *contentCard = new QFrame(tab);
-        contentCard->setObjectName("card");
-        QVBoxLayout *contentLayout = new QVBoxLayout(contentCard);
-        
-        QLabel *descriptionLabel = new QLabel("This is the primary action tab. Click the button below to perform the main action of your application.", tab);
-        descriptionLabel->setAlignment(Qt::AlignCenter);
-        descriptionLabel->setWordWrap(true);
-        descriptionLabel->setStyleSheet("QLabel { color: #86868b; font-size: 15px; margin: 10px; }");
-        
-        QPushButton *primaryButton = new QPushButton("Primary Action", tab);
-        
-        contentLayout->addWidget(descriptionLabel);
-        contentLayout->addWidget(primaryButton);
-        contentLayout->addStretch();
-        
-        layout->addWidget(contentCard);
-        layout->addStretch();
-        
-        connect(primaryButton, &QPushButton::clicked, this, &MainWindow::onPrimaryButtonClicked);
-        
-        tabWidget->addTab(tab, "Primary");
-    }
-    
-    void createSecondaryTab(QTabWidget *tabWidget)
-    {
-        QWidget *tab = new QWidget();
-        QVBoxLayout *layout = new QVBoxLayout(tab);
-        layout->setContentsMargins(20, 20, 20, 20);
-        layout->setSpacing(16);
-        
-        // Create content card
-        QFrame *contentCard = new QFrame(tab);
-        contentCard->setObjectName("card");
-        QVBoxLayout *contentLayout = new QVBoxLayout(contentCard);
-        
-        QLabel *descriptionLabel = new QLabel("This is the secondary action tab. This button has a different styling with a light background.", tab);
-        descriptionLabel->setAlignment(Qt::AlignCenter);
-        descriptionLabel->setWordWrap(true);
-        descriptionLabel->setStyleSheet("QLabel { color: #86868b; font-size: 15px; margin: 10px; }");
-        
-        QPushButton *secondaryButton = new QPushButton("Secondary Action", tab);
-        secondaryButton->setObjectName("secondaryButton");
-        
-        contentLayout->addWidget(descriptionLabel);
-        contentLayout->addWidget(secondaryButton);
-        contentLayout->addStretch();
-        
-        layout->addWidget(contentCard);
-        layout->addStretch();
-        
-        connect(secondaryButton, &QPushButton::clicked, this, &MainWindow::onSecondaryButtonClicked);
-        
-        tabWidget->addTab(tab, "Secondary");
-    }
-    
-    void createDestructiveTab(QTabWidget *tabWidget)
-    {
-        QWidget *tab = new QWidget();
-        QVBoxLayout *layout = new QVBoxLayout(tab);
-        layout->setContentsMargins(20, 20, 20, 20);
-        layout->setSpacing(16);
-        
-        // Create content card
-        QFrame *contentCard = new QFrame(tab);
-        contentCard->setObjectName("card");
-        QVBoxLayout *contentLayout = new QVBoxLayout(contentCard);
-        
-        QLabel *descriptionLabel = new QLabel("This is the destructive action tab. Be careful with this button as it will ask for confirmation before proceeding.", tab);
-        descriptionLabel->setAlignment(Qt::AlignCenter);
-        descriptionLabel->setWordWrap(true);
-        descriptionLabel->setStyleSheet("QLabel { color: #86868b; font-size: 15px; margin: 10px; }");
-        
-        QPushButton *destructiveButton = new QPushButton("Destructive Action", tab);
-        destructiveButton->setObjectName("destructiveButton");
-        
-        contentLayout->addWidget(descriptionLabel);
-        contentLayout->addWidget(destructiveButton);
-        contentLayout->addStretch();
-        
-        layout->addWidget(contentCard);
-        layout->addStretch();
-        
-        connect(destructiveButton, &QPushButton::clicked, this, &MainWindow::onDestructiveButtonClicked);
-        
-        tabWidget->addTab(tab, "Destructive");
+        if (m_primaryButton) {
+            connect(m_primaryButton, &QPushButton::clicked, this, &MainWindow::onPrimaryButtonClicked);
+            qDebug() << "Primary button signal connected";
+        } else {
+            qWarning() << "Primary button not found for signal connection";
+        }
+        if (m_secondaryButton) {
+            connect(m_secondaryButton, &QPushButton::clicked, this, &MainWindow::onSecondaryButtonClicked);
+            qDebug() << "Secondary button signal connected";
+        } else {
+            qWarning() << "Secondary button not found for signal connection";
+        }
+        if (m_destructiveButton) {
+            connect(m_destructiveButton, &QPushButton::clicked, this, &MainWindow::onDestructiveButtonClicked);
+            qDebug() << "Destructive button signal connected";
+        } else {
+            qWarning() << "Destructive button not found for signal connection";
+        }
     }
 
 private slots:
@@ -252,6 +339,11 @@ private slots:
             QMessageBox::information(this, "Action Confirmed", "Destructive action has been performed.");
         }
     }
+
+private:
+    QPushButton *m_primaryButton = nullptr;
+    QPushButton *m_secondaryButton = nullptr;
+    QPushButton *m_destructiveButton = nullptr;
 };
 
 int main(int argc, char *argv[])
