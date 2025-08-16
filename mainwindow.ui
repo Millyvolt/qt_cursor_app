@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>700</height>
+    <height>772</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -132,7 +132,7 @@ QTabWidget::tab-content {
 }</string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="primaryTab">
       <attribute name="title">
@@ -213,6 +213,66 @@ QPushButton:pressed {
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="primaryButton2">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #007aff;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 16px 24px;
+    margin: 8px;
+    min-width: 140px;
+    min-height: 50px;
+}
+
+QPushButton:hover {
+    background-color: #0056cc;
+}
+
+QPushButton:pressed {
+    background-color: #004499;
+    transform: scale(0.98);
+}</string>
+            </property>
+            <property name="text">
+             <string>Primary Action 2</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="primaryButton3">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #007aff;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 16px 24px;
+    margin: 8px;
+    min-width: 140px;
+    min-height: 50px;
+}
+
+QPushButton:hover {
+    background-color: #0056cc;
+}
+
+QPushButton:pressed {
+    background-color: #004499;
+    transform: scale(0.98);
+}</string>
+            </property>
+            <property name="text">
+             <string>Primary Action 3</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="verticalSpacer">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -276,23 +336,13 @@ QPushButton:pressed {
          </property>
          <layout class="QVBoxLayout" name="secondaryCardLayout">
           <item>
-           <widget class="QLabel" name="secondaryDescription">
-            <property name="styleSheet">
-             <string notr="true">QLabel { color: #86868b; font-size: 15px; margin: 10px; }</string>
-            </property>
-            <property name="text">
-             <string>This is the secondary action tab. This button has a different styling with a light background.</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="secondaryButton">
+            <property name="minimumSize">
+             <size>
+              <width>206</width>
+              <height>60</height>
+             </size>
+            </property>
             <property name="styleSheet">
              <string notr="true">QPushButton#secondaryButton {
     background-color: #f2f2f7;
@@ -321,6 +371,54 @@ QPushButton#secondaryButton:pressed {
            </widget>
           </item>
           <item>
+           <spacer name="verticalSpacer_7">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="secondaryButton2">
+            <property name="minimumSize">
+             <size>
+              <width>206</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton#secondaryButton2 {
+    background-color: #f2f2f7;
+    color: #007aff;
+    border: 1px solid #d1d1d6;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 16px 24px;
+    margin: 8px;
+    min-width: 140px;
+    min-height: 50px;
+}
+
+QPushButton#secondaryButton2:hover {
+    background-color: #e5e5ea;
+}
+
+QPushButton#secondaryButton2:pressed {
+    background-color: #d1d1d6;
+}</string>
+            </property>
+            <property name="text">
+             <string>Secondary Action 2</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="verticalSpacer_3">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -332,6 +430,41 @@ QPushButton#secondaryButton:pressed {
              </size>
             </property>
            </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="secondaryButton3">
+            <property name="minimumSize">
+             <size>
+              <width>206</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton#secondaryButton3 {
+    background-color: #f2f2f7;
+    color: #007aff;
+    border: 1px solid #d1d1d6;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 16px 24px;
+    margin: 8px;
+    min-width: 140px;
+    min-height: 50px;
+}
+
+QPushButton#secondaryButton3:hover {
+    background-color: #e5e5ea;
+}
+
+QPushButton#secondaryButton3:pressed {
+    background-color: #d1d1d6;
+}</string>
+            </property>
+            <property name="text">
+             <string>Secondary Action 3</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -425,6 +558,64 @@ QPushButton#destructiveButton:pressed {
             </property>
             <property name="text">
              <string>Destructive Action</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="destructiveButton2">
+            <property name="styleSheet">
+             <string notr="true">QPushButton#destructiveButton2 {
+    background-color: #ff3b30;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 16px 24px;
+    margin: 8px;
+    min-width: 140px;
+    min-height: 50px;
+}
+
+QPushButton#destructiveButton2:hover {
+    background-color: #d70015;
+}
+
+QPushButton#destructiveButton2:pressed {
+    background-color: #b30000;
+}</string>
+            </property>
+            <property name="text">
+             <string>Destructive Action 2</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="destructiveButton3">
+            <property name="styleSheet">
+             <string notr="true">QPushButton#destructiveButton3 {
+    background-color: #ff3b30;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 16px 24px;
+    margin: 8px;
+    min-width: 140px;
+    min-height: 50px;
+}
+
+QPushButton#destructiveButton3:hover {
+    background-color: #d70015;
+}
+
+QPushButton#destructiveButton3:pressed {
+    background-color: #b30000;
+}</string>
+            </property>
+            <property name="text">
+             <string>Destructive Action 3</string>
             </property>
            </widget>
           </item>
